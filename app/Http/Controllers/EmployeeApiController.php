@@ -37,4 +37,13 @@ class EmployeeApiController extends Controller
         $employees = Employee::all();
         return response()->json(['employees' => $employees], 200);
     }
+
+
+    public function destory(Employee $employee)
+    {
+        $employee = Employee::where('id', $employee->id)->first();
+        $employee->delete();
+
+        return response()->json(['data' => 'deleted'], 200);
+    }
 }
