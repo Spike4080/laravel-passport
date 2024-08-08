@@ -13,9 +13,9 @@ class EmployeeApiController extends Controller
     public function create()
     {
         $validator = Validator::make(request()->all(), [
-            'name' => ['required'],
-            'email' => ['required'],
-            'position' => ['required']
+            'name' => ['required', 'max:255', 'min:3'],
+            'email' => ['required', 'email', 'max:100', 'min:10'],
+            'position' => ['required', 'max:255', 'min:3']
         ]);
 
         if ($validator->fails()) {

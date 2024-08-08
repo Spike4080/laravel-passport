@@ -12,9 +12,9 @@ class AuthApiController extends Controller
     public function register()
     {
         $validator = Validator::make(request()->all(), [
-            'name' => ['required'],
-            'email' => ['required'],
-            'password' => ['required']
+            'name' => ['required', 'max:255', 'min:4'],
+            'email' => ['required', 'email', 'max:100', 'min:10'],
+            'password' => ['required', 'min:4', 'max:100']
         ]);
 
         if ($validator->fails()) {
@@ -34,7 +34,7 @@ class AuthApiController extends Controller
     public function login()
     {
         $validator = Validator::make(request()->all(), [
-            'email' => ['required'],
+            'email' => ['required', 'email'],
             'password' => ['required']
         ]);
 
