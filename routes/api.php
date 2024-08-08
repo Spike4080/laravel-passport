@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AuthApiController;
+use App\Http\Controllers\EmployeeApiController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -21,3 +22,9 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 Route::post('register', [AuthApiController::class, 'register']);
 Route::post('login', [AuthApiController::class, 'login']);
+
+
+Route::middleware('auth:api')->group(function () {
+    Route::post('employees', [EmployeeApiController::class, 'create']);
+    Route::get('employees', [EmployeeApiController::class, 'index']);
+});
